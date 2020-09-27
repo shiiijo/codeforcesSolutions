@@ -1,0 +1,143 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.*;
+
+public class jugglingLetters {
+    static class FastReader {
+        BufferedReader br;
+        StringTokenizer st;
+
+        public FastReader() {
+            br = new BufferedReader(new
+                    InputStreamReader(System.in));
+        }
+
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        long nextLong() {
+            return Long.parseLong(next());
+        }
+
+        double nextDouble() {
+            return Double.parseDouble(next());
+        }
+
+
+        String nextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+    }
+
+    public static void main(String[] args) {
+        FastReader sc = new FastReader();
+        PrintWriter p = new PrintWriter(System.out);
+        int t = sc.nextInt();
+        int k=0;
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            int[] f = new int[26];
+            int v=n;
+            int c=0;
+            while (n-- > 0) {
+                String s = sc.next();
+                for (int i = 0; i < s.length(); i++) {
+                    f[s.charAt(i) -'a']++;
+                }
+            }
+            for (int i = 0; i < 26; i++) {
+                if( f[i]%v!=0){
+                c=-1;
+                }
+            }
+            if(c==-1) System.out.println("NO");
+            else
+            System.out.println("YES");
+        }
+    }
+    static int mod = 1000000007;
+    static boolean primes[] = new boolean[1000007];
+
+    static boolean prime(int n) {
+        //it returns boolean ,ie true or false
+        Arrays.fill(primes, true);
+        primes[0] = primes[1] = false;
+        for (int i = 2; i * i <= n; i++) {
+            if (primes[i] == true) {
+                for (int p = i * i; p <= n; p += i) {
+                    primes[p] = false;
+                }
+            }
+        }
+        if (n < 1000007) {
+            return primes[n];
+        }
+        return false;
+    }
+    static int gcd(int a, int b) {
+        if (b == 0)
+            return a;
+        return gcd(b, a % b);
+    }
+
+    static long GCD(long a, long b) {
+        if (b == 0)
+            return a;
+        return GCD(b, a % b);
+    }
+    static int findGCD(int arr[], int n)
+    //to find gcd of more than two numbers
+    {
+        int result = 0;
+        for (int element: arr){
+            result = gcd(result, element);
+
+            if(result == 1)
+            {
+                return 1;
+            }
+        }
+        return result;
+    }
+    public static void pair(int n) {
+        //just give n value and enter array elements;
+        FastReader sc=new FastReader();
+        int a[][] = new int[n][2];
+        for (int i = 0; i < n; i++) {
+            a[i][0] = i + 1;
+            a[i][1] = sc.nextInt();
+        }
+        Arrays.sort(a, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                if (o1[1] == o2[1]) {
+                    return o1[1] - o2[1];
+                }
+                return o1[1] - o2[1];
+            }
+        });
+        for (int i = 0; i < n; i++) {
+            System.out.println(a[i][0] + " " + a[i][1]);
+        }
+    }
+}
