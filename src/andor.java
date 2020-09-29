@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class b {
+public class andor{
     public static void main(String[] args) {
         FastReader sc=new FastReader();
         PrintWriter out=new PrintWriter(System.out);
